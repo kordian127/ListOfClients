@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List of clients</title>
+    <style type="text/css">
+   		#clientcontainer{
+         margin-top: 50px;
+       }
+   	</style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<section id="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</section>
+<section id="clientcontainer">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Update</th>
+                    <th scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="client : ${clients}">
+                    <th scope="row" th:text=${client.id}></th>
+                    <td th:text=${client.todoItem}></td>
+                    <td th:text=${client.completed}></td>
+                    <td>
+                        <form th:action="@{/clientUpdate/{id}(id=${client.id})}" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-sm text-white">Update</button>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/clientDelete/{id}(id=${client.id})}" method="POST" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-danger btn-sm text-white">Delete</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-success btn-lg text-white" data-toggle="modal" data-target="#viewModal">Add New Client</a>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

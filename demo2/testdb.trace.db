@@ -1,0 +1,4 @@
+2021-08-09 09:52:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Błąd składniowy w wyrażeniu SQL "SELET[*] * FROM PERSON"; oczekiwano "SET, SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"
+Syntax error in SQL statement "SELET[*] * FROM PERSON"; expected "SET, SAVEPOINT, SCRIPT, SHUTDOWN, SHOW"; SQL statement:
+SELET * FROM PERSON [42001-200]
